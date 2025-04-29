@@ -10,7 +10,13 @@ services:
     envVars:
       - key: DEBUG
         value: False
-      - key: DATABASE_URL
+      - key: DATABASE_HOST
+        sync: false
+      - key: DATABASE_USER
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: DATABASE_NAME
         sync: false
       - key: SECRET_KEY
         sync: false
