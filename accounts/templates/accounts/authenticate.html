@@ -1,0 +1,17 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}Authenticate{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "accounts/authenticate.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <img src="{% static "accounts/email-sent.gif" %}" height="120px" width="170px" class="gif">
+        <h3 class="instruction">We have sent an email to you . Please open it and verify.</h3>
+    </div>
+
+    <script src="{% static "accounts/authenticate.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0d0d0d;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.content {
+    width: 50%;
+    margin: 10rem auto;
+    height: 30%;
+    border-radius: 1rem;
+    box-shadow: 0 0 5px #242424;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.instruction {
+    color: aliceblue;
+    opacity: 0;
+}
+
+.animate {
+    animation: fadeIn 0.5s forwards linear;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

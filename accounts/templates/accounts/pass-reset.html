@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: Arial, sans-serif;background-color: #ffffff;color: #ffffff;margin: 0;padding: 0;">
+    <div class="email-container" style="width: 100%;max-width: 600px;margin: 0 auto;background-color: #000000;padding: 30px;border-radius: 8px;box-sizing: border-box;">
+        <div class="header" style="text-align: center;margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/d02H3pX9/R-Logo-2.jpg" alt="Logo" style="width: 100px;height: auto;">
+            <h1 style="color: #ff5e57;font-size: 24px;margin: 0;">Recommendo</h1>
+        </div>
+        <p style="font-size: 16px;line-height: 1.5;margin: 10px 0;">Hello, {{ name }}!</p>
+        <p style="font-size: 16px;line-height: 1.5;margin: 10px 0;">We received a request to reset the password for your Recommendo account. If you made this request, please click the button below to reset your password.</p>
+        <a href="{{ link }}" class="btn" style="display: inline-block;padding: 12px 25px;background-color: #ff5e57;color: #111111;font-size: 13px;text-decoration: none;border-radius: 5px;margin: 20px 0;">Reset My Password</a>
+        <p style="font-size: 16px;line-height: 1.5;margin: 10px 0;">If you didn’t request a password reset, please ignore this email or let us know if you have any concerns.</p>
+        <p style="font-size: 16px;line-height: 1.5;margin: 10px 0;">For any assistance, feel free to reach out to us. We're here to help!</p>
+        <div class="footer" style="text-align: center;font-size: 14px;color: #aaaaaa;margin-top: 30px;">
+            <p style="font-size: 16px;line-height: 1.5;margin: 10px 0;">© 2025 Recommendo, All Rights Reserved</p>
+            <p style="font-size: 16px;line-height: 1.5;margin: 10px 0;">Visit our <a href="http://127.0.0.1:8000/" style="color: #ff5e57;text-decoration: none;">website</a> for more information.</p>
+        </div>
+    </div>
+</body>
+</html>

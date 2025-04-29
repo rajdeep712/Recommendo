@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn newproject.wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        value: django-insecure-ye)^(lci%h@m7lax6z*9by#5+19mmyvd%l)6qg&8+gapc-^@u%
+      - key: DEBUG
+        value: False
+      - key: DATABASE_URL
+        value: DATABASE_URL=postgres://recommendo_user:Oq0KVCrTykOPfzDl1eDnspMqBDQdCKLG@dpg-d08gac2dbo4c73ackl30-a.oregon-postgres.render.com:5432/recommendo
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_HOST_USER
+        value: recommendo2025@gmail.com
+      - key: EMAIL_HOST_PASSWORD
+        value: dsok lbng xzqi hrap

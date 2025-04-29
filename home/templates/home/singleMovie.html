@@ -1,0 +1,217 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="{% static "home/singleMovie.css" %}">
+  <link href="https://unpkg.com/lucide-icons/dist/umd/lucide-icons.js" rel="stylesheet">
+</head>
+<body>
+  {% include "home/includes/home_button.html" %}
+  <div class="container">
+    <div class="movie-card">
+      <div class="movie-content">
+
+        <div class="upper-poster">
+          <div class="movie-poster">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }}" class="poster-image">
+          </div>
+
+          <div class="movie-details">
+            <h1 class="movie-title fade-in">{{ movie.title }}</h1>
+            
+            <p class="movie-plot">
+              {{ movie.plot }}
+            </p>
+
+            <div class="movie-runtime">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock2-icon lucide-clock-2">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 10"/>
+              </svg>
+              <span class="runtime-text">{{ movie.runtime }} Minutes</span>
+            </div>
+  
+            <div class="genres">
+              {% for genre in genres %}
+                  <span class="genre-tag">{{ genre }}</span>
+              {% endfor %}
+            </div>
+
+            <div class="ratings">
+              <div class="rating">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="star-icon">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                {% if movie.imdb_rating %}
+                <span class="rating-text">{{ movie.imdb_rating }}/10</span>
+                {% else %}
+                <span class="rating-text">{{ movie.rating }}/10</span>
+                {% endif %}
+              </div>
+              
+              <div class="rating">
+                <img src="{% static "home/Rotten_Tomatoes.svg" %}" width="20px" height="20px">
+                <span class="rating-text">{{ movie.rotten_tomatoes }}</span>
+              </div>
+            </div>
+  
+
+            <div class="buttons">
+              <button class="favorite-btn {% if is_favourite %}active{% endif %}" type="submit" data-code="{{ movie.code }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="heart-icon">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                {% if is_favourite %}
+                Remove from Favorites
+                {% else %}
+                Add to Favorites
+                {% endif %}
+              </button>
+
+              <button class="trailer-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clapperboard-icon lucide-clapperboard">
+                  <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+                </svg>
+                Watch Trailer
+              </button>
+            </div>
+
+            {% if movie.awards  and home.awards != 'N/A' %}
+            <div class="awards">
+              <div class="awards-title">Awards</div>
+              <p>🏆  {{ movie.awards }}</p>
+            </div>
+            {% endif %}
+
+            <div class="tags">
+              {% if movie.imdb_rating >= 8.0 and movie.imdb_votes >= 70000 and movie.rotten_tomatoes >= "85%" %}
+              <div class="top-rated tag">
+                <img src="{% static "home/top-rated.svg" %}" height="20px" width="20px">
+                <span class="tag-text">Top-Rated</span>
+              </div>
+              {% endif %}
+              {% if movie.year >= 2022 and movie.imdb_votes >= 70000 and movie.popularity >= 70 %}
+              <div class="trending tag">
+                <img src="{% static "home/trending-up.svg" %}" height="20px" width="20px">
+                <span class="tag-text">Trending</span>
+              </div>
+              {% endif %}
+              {% if movie.year >= 2025 %}
+              <div class="new-release tag">
+                <img src="{% static "home/circle-plus.svg" %}" height="20px" width="20px">
+                <span class="tag-text">Newly Released</span>
+              </div>
+              {% endif %}
+              {% if movie.popularity >= 80 and movie.imdb_rating >= 8.5 and movie.year >= 2010%}
+              <div class="all-time-favourite tag">
+                <img src="{% static "home/favourite.svg" %}" height="20px" width="20px">
+                <span class="tag-text">All Time Favourite</span>
+              </div>
+              {% endif %}
+              {% if box_office_hit %}
+              <div class="boxOfficeHit tag">
+                <img src="{% static "home/box-office.png" %}" height="20px" width="20px">
+                <span class="tag-text">Box Office Hit</span>
+              </div>
+              {% endif %}
+              {% if blockbuster %}
+              <div class="blockbuster tag">
+                <img src="{% static "home/blockbuster.gif" %}" height="20px" width="20px">
+                <span class="tag-text">Blockbuster</span>
+              </div>
+              {% endif %}
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="cast">
+          <h3>Casts</h3>
+          <div class="cast-list">
+            {% for cast in casts %}
+            
+            <a href="{% url "cast_movies" cast.name %}" class="cast-member">
+              {% if cast.image_url %}
+              <img src="{{ cast.image_url }}" alt="{{ cast.name }}image" class="cast-image">
+              {% else %}
+              <img src="{% static "home/avatar.png" %}" alt="{{ cast.name }}image" class="cast-image">
+              {% endif %}
+              <span>{{ cast.name }}</span>
+            </a>
+            
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="comments-section">
+        <h2>Comments</h2>
+        
+        <div id="comment-form" class="comment-form">
+          <div class="comment-input-group">
+            <input type="hidden" name="category" value="comment" class="category">
+            <input type="hidden" name="code" value={{ movie.code }} class="code">
+            <input type="text" id="comment-input" placeholder="Add a comment..." class="comment-input" name="comment">
+            <button type="submit" class="comment-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Comment
+            </button>
+          </div>
+        </div>
+
+        <div id="comments-list" class="comments-list">
+          {% if is_comments %}
+          {% for comment in comments %}
+            <div class="comment">
+              <div class="upper">
+                <div class="comment-header">
+                  <div class="comment-avatar">{{ comment.avatar }}</div>
+                  <span class="comment-author">{{ comment.name }}</span>
+                </div>
+                {% if comment.username == username %}
+                
+                <div>
+                  <input type="hidden" name="category" value="delete" class="category">
+                  <input type="hidden" name="code" value={{ movie.code }} class="code">
+                  <input type="hidden" name="comment-id" value={{ comment.id }} class="comment-id">
+                  <button type="submit" style="background:transparent;border:none;" class="delete-btn">
+                    <img src="{% static "home/trash.svg" %}" alt="" height="25px" width="25px">
+                  </button>
+                </div>
+
+                {% endif %}
+              </div>
+              <div class="line"></div>
+              <p>{{ comment.comment }}</p>
+            </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup" class="popup"></div>
+
+  <div class="overlay">
+    <div class="overlay-content">
+      <div class="close-btn"><img src="{% static "home/x-mark.png" %}" height="30px" width="30px"></div>
+      <iframe src="{{ video_url }}" class="video-frame" title="{{ movie.title }} | Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="trash-svg" data-trash-url="{% static 'home/trash.svg' %}"></div>
+
+  <script src="{% static "home/singleMovie.js" %}"></script>
+</body>
+</html>

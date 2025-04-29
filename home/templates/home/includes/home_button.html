@@ -1,0 +1,8 @@
+{% load static %}
+
+<div style="padding: 10px; left: 0.5rem; top: 5px; position: fixed; z-index:2; border-radius:6px; backdrop-filter:blur(10px);">
+    <a href="{% url 'home' %}" style="color:#fff;text-decoration: none;display:flex;gap:3px;align-items:center;">
+        <img src="{% static "home/logo.png" %}" style="height:40px;width:40px;border-radius:6px;background:transparent;">
+        <p style="font-size:large;font-weight: bold; text-shadow: 0 0 7px #000;">Recommendo</p>
+    </a>
+</div>

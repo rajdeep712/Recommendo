@@ -1,0 +1,149 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+
+.movie-browser {
+  background-color: #000000;
+  min-height: 100vh;
+  padding: 0 20px;
+  padding-top: 4.5rem;
+  color: #ffffff;
+}
+
+  
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.movie-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.movie-image {
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.movie-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.movie-info {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.4375rem;
+  right: 0.4375rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px var(--black);
+}
+
+.movie-card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.625rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f5f5f5;
+  text-shadow: 0 0 10px var(--black);
+}
+
+
+.movie-card:hover {
+  transform: translateY(-4px);
+}
+
+.movie-card:hover .movie-card-overlay {
+  opacity: 1;
+}
+
+.movie-card:hover .movie-title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.movie-loader-container {
+  margin-top: 1rem;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movie-loader {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  border-top: 4px solid red;
+  animation: move 1s forwards infinite;
+  display: none;
+}
+
+@keyframes move {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+
+
+@media (max-width: 640px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+@media (max-width: 400px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+}

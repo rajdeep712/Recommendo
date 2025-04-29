@@ -1,0 +1,201 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendo</title>
+    <link rel="stylesheet" href="{% static "home/styles.css" %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static "home/includes/footer.css" %}">
+
+  </head>
+  <body>
+    <div class="animate">
+      <div class="title">
+        <span class="letter">R</span>
+        <span class="letter">e</span>
+        <span class="letter">c</span>
+        <span class="letter">o</span>
+        <span class="letter">m</span>
+        <span class="letter">m</span>
+        <span class="letter">e</span>
+        <span class="letter">n</span>
+        <span class="letter">d</span>
+        <span class="letter">o</span>
+      </div>
+    </div>
+
+
+    <div class="movie-layout">
+      <header class="navigation-header">
+        <div class="logo-container">
+          <img src="{% static "home/logo.png" %}" class="logo" />
+          <span class="logo-text">Recommendo</span>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="accounts" id="menu">
+          <span><a href="{% url 'login' %}">Login</a></span>
+          <span><a href="{% url 'signup' %}">Signup</a></span>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background: transparent; border:none; cursor:pointer;"><i class="fas fa-search" style="color: #fff; font-size: 20px;"></i></button>
+          </form>
+        </div>
+      </header>
+
+      <section class="hero-section">
+        <div class="lol-overlay"></div>
+        <div class="hero-slider">
+          {% for slider in slider_data %}
+          <div class="pic">
+            <div class="slider-overlay"></div>
+            <img src="{{ slider.backdrop_url }}" alt="{{ movie.title }}backdrop">
+
+            <div class="hero-content">
+              <div class="movie-tags">
+                <span class="tag">{{ slider.year }}</span>
+                <div class="tag rating">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.6902 5.05469C13.6902 5.16927 13.6225 5.29427 13.4871 5.42969L10.6511 8.19531L11.323 12.1016C11.3282 12.138 11.3308 12.1901 11.3308 12.2578C11.3308 12.3672 11.3035 12.4596 11.2488 12.5352C11.1941 12.6107 11.1147 12.6484 11.0105 12.6484C10.9115 12.6484 10.8074 12.6172 10.698 12.5547L7.19019 10.7109L3.68237 12.5547C3.56779 12.6172 3.46362 12.6484 3.36987 12.6484C3.2605 12.6484 3.17847 12.6107 3.12378 12.5352C3.06909 12.4596 3.04175 12.3672 3.04175 12.2578C3.04175 12.2266 3.04696 12.1745 3.05737 12.1016L3.72925 8.19531L0.885498 5.42969C0.75529 5.28906 0.690186 5.16406 0.690186 5.05469C0.690186 4.86198 0.836019 4.74219 1.12769 4.69531L5.04956 4.125L6.80737 0.570312C6.90633 0.356771 7.03394 0.25 7.19019 0.25C7.34644 0.25 7.47404 0.356771 7.573 0.570312L9.33081 4.125L13.2527 4.69531C13.5444 4.74219 13.6902 4.86198 13.6902 5.05469Z"
+                      fill="#B3B3B3"
+                    />
+                  </svg>
+                  <span>{{ slider.rating }}</span>
+                </div>
+              </div>
+              <h1 class="movie-title">{{ slider.title }}</h1>
+              <p class="movie-description">
+                {{ slider.plot }}
+              </p>
+              <a href="{% url "single_movie" slider.code %}" style="color:white;width:70px;height:40px;background:red;text-decoration:none;padding:0.5rem;border-radius:6px;" target="_blank">View More</a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        
+      </section>
+
+      <section class="domain-info">
+        <h2>Your daily dose of movie magic ! Recommendo</h2>
+      </section>
+
+
+      <div class="about-container">
+        <div class="about-div">
+          <h1 class="about-title">Discover Your Next Favorite!</h1>
+          <p class="about-description">
+            Tired of endlessly scrolling to find your next great movie?
+            At Recommendo, we make discovering your next favorite film effortless, exciting, and personal.
+  
+            With the power of smart recommendations and expert curation, we help you uncover movies that match your taste, mood, and style — whether you're in the mood for an action-packed adventure, a heartwarming drama, or a hidden indie gem.
+  
+            No more guesswork. Just great movies, tailored for you.
+          </p>
+        </div>
+  
+        <div class="about-div">
+          <h1 class="about-title">How Recommendo Works?</h1>
+          <p class="about-description">
+            <h4>Personalized Picks Just for You</h4>
+            <br>
+            <p class="about-description">
+              Our advanced recommendation system understands your preferences and suggests movies you'll actually want to watch.
+              Every suggestion is crafted based on your interests and favourites.
+            </p>
+            <br>
+            <h4>Curated Collections to Explore</h4>
+            <br>
+            <p class="about-description">
+              Looking for something different?
+              Dive into themed collections, from "Feel-Good Favorites" to "Critically Acclaimed Must-Sees," handpicked to inspire your next movie night.
+            </p>
+            <br>
+            <h4>Simple, Smart, and Fun</h4>
+            <br>
+            <p class="about-description">
+              We've designed Recommendo to be clean, and easy to use — no complicated menus or endless lists.
+              Just straight-to-the-point recommendations and collections you’ll love exploring.
+            </p>
+          </p>
+        </div>
+  
+        <div class="vive-image">
+          <img src="{% static "home/vive.png" %}">
+        </div>
+  
+        <a class="cta-button" href="/home/search">Explore</a>
+      </div>
+
+      <section class="movie-section" id="trending-loader">
+        <div class="movie-header">
+          <div class="starting"></div>
+          <h2>Trending</h2>
+          <div class="movie-loader"></div>
+        </div>
+        <div class="movie-grid" id="movieGrid">
+          <button class="scroll-btn left" onclick="scrollMovies(this,-1)"><</button>
+          <button class="scroll-btn right" onclick="scrollMovies(this,1)">></button>
+          <div class="movie" id="trending">
+            
+
+          </div>
+        </div>
+      </section>
+
+
+      <section class="movie-section" id="explore-target">
+        <div class="movie-header">
+          <div class="starting"></div>
+          <h2>Latest</h2>
+          <div class="movie-loader" id="latest-loader"></div>
+        </div>
+        <div class="movie-grid" id="movieGrid">
+          <button class="scroll-btn left" onclick="scrollMovies(this,-1)"><</button>
+          <button class="scroll-btn right" onclick="scrollMovies(this,1)">></button>
+          <div class="movie" id="latest">
+            
+
+          </div>
+        </div>
+      </section>
+
+
+      <section class="movie-section">
+        <div class="movie-header">
+          <div class="starting"></div>
+          <h2>Top-Rated</h2>
+          <div class="movie-loader" id="top-loader"></div>
+        </div>
+        <div class="movie-grid" id="movieGrid">
+          <button class="scroll-btn left" onclick="scrollMovies(this,-1)"><</button>
+          <button class="scroll-btn right" onclick="scrollMovies(this,1)">></button>
+          <div class="movie" id="top">
+            
+            
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {% include "home/includes/footer.html" %}
+
+    <script src="{% static "home/script.js" %}"></script>
+    <script src="{% static "home/includes/footer.js" %}"></script>
+  </body>
+</html>

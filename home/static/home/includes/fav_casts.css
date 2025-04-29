@@ -1,0 +1,130 @@
+.coverlay-container {
+    background-image: linear-gradient(to bottom, rgb(20, 27, 41) 20%, rgb(12, 17, 27) 100%);
+    background-color: rgb(12, 17, 27);
+    padding: 40px 20px;
+    width: 90%;
+    height: 90%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow-y: auto;
+    border-radius: 20px;
+}
+
+.coverlay-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.coverlay-title {
+    color: rgb(249, 249, 249);
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.coverlay-cast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.coverlay-cast-card {
+    background-color: rgb(25, 33, 51);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    position: relative;
+    border: 3px solid transparent;
+}
+
+.coverlay-cast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.coverlay-cast-card.selected {
+    transform: scale(1.02);
+    border: 3px solid rgb(31, 128, 224);
+}
+
+.coverlay-cast-image {
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.coverlay-cast-card.selected .coverlay-cast-image {
+    transform: scale(1.1);
+}
+
+.coverlay-cast-info {
+    padding: 20px;
+    color: rgb(249, 249, 249);
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.coverlay-cast-name {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+
+.coverlay-save-button {
+    background-color: rgb(31, 128, 224);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    margin: 40px auto 0;
+    display: block;
+}
+
+.coverlay-save-button:hover {
+    background-color: rgb(45, 140, 235);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(31, 128, 224, 0.4);
+}
+
+.coverlay-save-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(31, 128, 224, 0.2);
+}
+
+.success {
+    width: 60%;
+    height: 50%;
+    margin: 6rem auto;
+    font-size: larger;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:900px) {
+    .success {
+        width: 100%;
+        font-weight: 450;
+    }
+}
+@media (max-width: 640px) {
+    .coverlay-cast-grid {
+        grid-template-columns: 1fr;
+    }
+}

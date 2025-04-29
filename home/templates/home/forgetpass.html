@@ -1,0 +1,45 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}Reset Password - Recommendo{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "home/forgetpass.css" %}">
+{% endblock %}
+
+{% block content %}
+{% include "home/includes/home_button.html" %}
+<div class="container">
+    <div class="card">
+        <div class="heading">
+            <div>
+                <img src="{% static "home/logo.png" %}" alt="Recommendo Logo" class="logo" />
+            </div>
+
+            <h1>Recommendo</h1>
+        </div>
+
+        <h2>Reset your password</h2>
+        <p class="instruction">Enter the email address to your account and we’ll send you email.</p>
+
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form action="/accounts/forgetpassword" method="POST">
+            {% csrf_token %}
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" />
+            <button class="send-btn" type="submit">Send link</button>
+        </form>
+    </div>
+</div>
+
+<div class="copyright">
+    <p>© 2025 Recommendo, All Rights Reserved</p>
+</div>
+{% endblock %}

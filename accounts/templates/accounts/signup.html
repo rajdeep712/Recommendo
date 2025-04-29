@@ -1,0 +1,43 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "accounts/signup_styles.css" %}">
+{% endblock %}
+
+{% block content %}
+{% include "home/includes/home_button.html" %}
+    <div class="container">
+        <img src="{% static "accounts/signup.png" %}" alt="" class="background-image" />
+        <div class="backdrop-overlay"></div>
+        <div class="form-container">
+            <div class="form-content">
+                <h1>Sign up</h1>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class={{ message.tags }}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="{% url "signup" %}" method="POST" class="signup-form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group {% if field.errors %}errors{% endif %}">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="continue-button">Continue</button>
+                </form>
+            </div>
+            <div class="signin-prompt">
+                Already have an account?
+                <a href="{% url "login" %}" class="signin-link">Log in</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}Change Password - Recommendo{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "home/resetpass.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+      <div class="heading">
+        <div>
+          <img src="{% static "home/logo.png" %}" alt="Recommendo Logo" class="logo" />
+        </div>
+        <h1>Recommendo</h1>
+      </div>
+
+      <h2>Change your password</h2>
+      <p class="instruction">Enter a new password below to update your account credentials.</p>
+
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <label for="new-password">New password</label>
+        <input type="password" id="new-password" name="new-pass" placeholder="Enter new password" />
+  
+        <label for="confirm-password">Confirm password</label>
+        <input type="password" id="confirm-password" name="conf-pass" placeholder="Confirm new password" />
+  
+        <button class="send-btn" type="submit">Update password</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="copyright">
+    <p>© 2025 Recommendo, All Rights Reserved</p>
+  </div>
+{% endblock %}

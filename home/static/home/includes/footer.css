@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.footer {
+    background-color: #111010;
+    color: #eee;
+    padding: 40px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color: #ff5e57;
+}
+
+.footer-logo p {
+    font-size: 16px;
+    color: #bbb;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.recommendo-logo {
+    width: 37px;
+    height: 37px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #ff5e57;
+}
+
+.footer-social .social-icons a {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.footer-social .social-icons img {
+    width: 30px;
+    height: 30px;
+    /* filter: grayscale(100%); */
+}
+
+.uplift {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+}
+
+.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 13px;
+    color: #777;
+}
+.footer-bottom p {
+    font-size: 14px;
+}

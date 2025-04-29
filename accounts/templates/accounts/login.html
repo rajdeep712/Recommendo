@@ -1,0 +1,68 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Login{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "accounts/login_styles.css" %}">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css"
+    />
+{% endblock %}
+
+{% block content %}
+{% include "home/includes/home_button.html" %}
+    <div class="container">
+        <div class="left-section">
+            <img src="{% static "accounts/login.png" %}" alt="" class="background-image" />
+        </div>
+        <div class="right-section">
+            <div class="login-container">
+                <h2>Log in</h2>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class={{ message.tags }}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="form-group">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="input-group {% if field.errors %}errors{% endif %}">
+                            {{ form.username.label_tag }}
+                            {{ form.username|add_class:"custom-input" }}
+                            {{ form.errors }}
+                        </div>
+                        <div class="input-group {% if field.errors %}errors{% endif %}">
+                            <div class="password-header">
+                                {{ form.password.label_tag }}
+                                <div class="hide-password">
+                                    <i class="ti ti-eye-off" id="eyeIcon"></i>
+                                    <span id="info">Show</span>
+                                </div>
+                            </div>
+                            {{ form.password|add_class:"custom-input password-input" }}
+                            <a href="{% url 'forget_pass' %}" class="forgot-password">Forget your password</a>
+                            {{ form.errors }}
+                        </div>
+            
+                        <button type="submit" class="sign-in-button">Sign in</button>
+                    </form>
+                </div>
+                <div class="signup-prompt">
+                    Don't have any account?
+                    <a href="{% url "signup" %}" class="signup-link">Create one!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static "accounts/login.js" %}"></script>
+{% endblock %}
