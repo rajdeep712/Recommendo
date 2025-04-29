@@ -83,7 +83,12 @@ WSGI_APPLICATION = 'newproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        dj_database_url.config(default=config('DATABASE_URL'))
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_college_kpiz',
+        'USER': 'django_college_kpiz_user',
+        'PASSWORD': 'H1wmTcVRxbhMq6zMEe7uIILcUxRIgKZs',
+        'HOST': 'dpg-cvqpfovdiees739ncr00-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
