@@ -144,9 +144,9 @@ def send_mail(email,token,name,sub,type):
     recipient_list = [email]
 
     if type == "pass-reset":
-        link = f"http://127.0.0.1:8000/accounts/reset-pass/{token}"
+        link = f"http://recommendo-8xpr.onrender.com/accounts/reset-pass/{token}"
     else:
-        link = f"http://127.0.0.1:8000/accounts/{token}"
+        link = f"http://recommendo-8xpr.onrender.com/accounts/{token}"
 
     html_content = render_to_string(f"accounts/{type}.html",{
         "link":link,
