@@ -175,7 +175,7 @@ def Auth_Home_Page(request):
         title = fav_movie.title
         section1 = f'Because you liked {title}'
         section2 = 'Recommended for you'
-        section3 = 'Trending Now'
+        section3 = 'Trending Now',
         section4 = 'Based on your Favourite Casts'
 
     return render(request,"home/user-home.html", {
@@ -194,7 +194,7 @@ def SingleMoviePage(request,code):
     if(request.method == "GET"):
         movie = Movie.objects.get(code=code)
 
-        YOUTUBE_API_KEY = "AIzaSyCWq_Z4klxDCznQLhjOxJj6jwWMPa-lNYU"
+        YOUTUBE_API_KEY = "AIzaSyC7mXhRzpHu2IpnJd-Mfc_OY8d6THkvF1U"
         def get_youtube_trailer_id(title):
             search_query = f"{title} official trailer"
             url = "https://www.googleapis.com/youtube/v3/search"
